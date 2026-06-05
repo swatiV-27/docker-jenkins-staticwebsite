@@ -105,7 +105,7 @@ devops-command-center/
 ## ⚙️ Installation
 # Setup terminal
 #install jenkinks and docker
-# chuser -aG docker jenkins
+# usermod -aG docker jenkins
 # su - jenkins
 # make sure security group configuration
 ### Clone Repository
