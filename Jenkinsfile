@@ -1,32 +1,34 @@
 pipeline
    agent any
-      stages('git clone') {
-          stage {
-              git branch: 'main',
+      stages {
+          stage ('Git Clone') {
+              steps {
+                    git branch: 'main',
                     url: 'https://github.com/swatiV-27/docker-jenkins-staticwebsite.git'
          }
       }
-       stages('docker build') {
-         stage {    
+       stage('docker build') {
+         steps {    
          sh 'docker build -t image-devops .'
        }
      }
-       stages('previous container delete') {
-         stage {
-              sh 'docker rm -f devops-con'
+       stage('previous container delete') {
+         steps {
+              sh 'docker rm -f devops-con || true'
          }
        }
-       stages('container bhuild') {
-           sh '''
+       stage('container bhuild') {
+           steps {
+              sh '''
                 docker run -d \
                 -p 5000:5000 \
                 --name devops-con \
-                image-devop
+                image-devops
               '''
        }
      }
-      stages('check container') {
-        stage {
+      stage('check container') {
+        steps {
              sh 'docker ps'
         }
       }
