@@ -2,8 +2,9 @@ pipeline
    agent any
       stages('git clone') {
           stage {
-              git clone 'https://github.com/swatiV-27/docker-jenkins-staticwebsite.git' , branch: main
-          }
+              git branch: 'main',
+                    url: 'https://github.com/swatiV-27/docker-jenkins-staticwebsite.git'
+         }
       }
        stages('docker build') {
          stage {    
